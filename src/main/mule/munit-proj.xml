@@ -8,7 +8,7 @@ http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/
 	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="2d4787ea-eca8-42cd-90c2-f0e49aaba04b" >
 		<http:listener-connection host="0.0.0.0" port="8081" />
 	</http:listener-config>
-	<configuration-properties doc:name="Configuration properties" doc:id="f8812885-6bc0-4031-9050-2a20a745fa80" file="app.properties" />
+	<configuration-properties doc:name="Configuration properties" doc:id="c26cdd86-6e8f-4b98-8b6e-a9160e531e8c" file="app.properties" />
 	<flow name="munit-projFlow3" doc:id="68451564-ec28-4bd2-984d-0c565f84b647" >
 		<choice doc:name="Choice" doc:id="96f59427-1e04-4104-8626-f803fd649fd7" >
 			<when expression="'payload_1'==payload">

@@ -32,20 +32,15 @@
 				<extensions>true</extensions>
 				<configuration>
 				<cloudHubDeployment>
-						<uri>https://anypoint.mulesoft.com</uri>
-						<muleVersion>${app.runtime}</muleVersion>
-						<username>${anypoint.username}</username>
-						<password>${anypoint.password}</password>
-						<applicationName>basics</applicationName>
-						<environment>${anypoint.environment}</environment>
-						<region>${region}</region>
-						<workers>1</workers>
-						<workerType>MICRO</workerType>
-						<objectStoreV2>true</objectStoreV2>
-						<properties>
-							<key>v1</key>
-						</properties>
-					</cloudHubDeployment>
+                        <uri>https://anypoint.mulesoft.com</uri>
+                        <muleVersion>4.3.0</muleVersion>
+                        <username>${anypoint.username}</username>
+                        <password>${anypoint.password}</password>
+                        <applicationName>munit-proj</applicationName>
+                        <environment>${anypoint.environment}</environment>
+                        <workerType>MICRO</workerType>
+                        <objectStoreV2>true</objectStoreV2>
+                    </cloudHubDeployment>
 				</configuration>
 			</plugin>
 		</plugins>
