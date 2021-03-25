@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="2d4787ea-eca8-42cd-90c2-f0e49aaba04b" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<configuration-properties doc:name="Configuration properties" doc:id="f8812885-6bc0-4031-9050-2a20a745fa80" file="app.properties" />
+	<flow name="munit-projFlow3" doc:id="68451564-ec28-4bd2-984d-0c565f84b647" >
+		<choice doc:name="Choice" doc:id="96f59427-1e04-4104-8626-f803fd649fd7" >
+			<when expression="'payload_1'==payload">
+				<flow-ref doc:name="Flow Reference" doc:id="021b1a72-c9e3-45fc-a39c-ca5e376d9bc6" name="munit-projFlow1"/>
+			</when>
+			<otherwise >
+				<flow-ref doc:name="Flow Reference" doc:id="b8102bff-bbf0-41ab-91d2-f4650f42e04a" name="munit-projFlow2"/>
+			</otherwise>
+		</choice>
+	</flow>
+	<flow name="munit-projFlow" doc:id="b0b429f8-cb93-47e8-8805-58a0766c8488" >
+		<http:listener doc:name="Listener" doc:id="e95f9ea3-de7f-41a0-89d0-c7da5e9615e6" config-ref="HTTP_Listener_config" path="/test"/>
+		<set-payload value="#[attributes.queryParams.url_key]" doc:name="Set Payload" doc:id="6d49f7a8-6138-4ac9-a2b8-309c450b0aab" />
+		<flow-ref doc:name="Flow Reference" doc:id="fa64c9e4-9178-4192-9f48-bbbf2af97071" name="munit-projFlow1"/>
+		<choice doc:name="Choice" doc:id="40f303e7-0b89-49b7-a715-eaeac2e24f30" >
+			<when expression="#[vars.myvar== 'myvar_1']">
+				<set-payload value="#['response payload_1']" doc:name="Set Payload" doc:id="b1838563-0527-400e-b2dc-2a3315895b15" />
+			</when>
+			<otherwise >
+				<set-payload value="#['response payload_2']" doc:name="Set Payload" doc:id="3f7c4689-e3cd-4a85-ab0b-d32936968a48" />
+			</otherwise>
+		</choice>
+	</flow>
+	<flow name="munit-projFlow1" doc:id="e9160109-11ee-460c-95c0-5dc904ff2f35" >
+		<set-variable value="#['myvar_1']" doc:name="Set Variable" doc:id="59e7da44-d26b-4d7b-8d95-4fbb47578f06" variableName="myvar"/>
+	</flow>
+	<flow name="munit-projFlow2" doc:id="c0bfe4d9-f388-45bd-beca-85c68f42aee1" >
+		<set-variable value="#['myvar_2']" doc:name="Set Variable" doc:id="f8aa7da7-9ee8-4937-9fde-ab9e64d2acee" variableName="myvar"/>
+	</flow>
+</mule>
